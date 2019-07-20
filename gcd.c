@@ -3,25 +3,27 @@
 int main(int args, char *argv[])
 {
 	int arr[args-1];
-	int gcd,pos;
-	int min=atoi(argv[1]);
+	int flag=0,gcd=1;
 	printf("The elements entered are : ");
 	for(int i=0;i<(args-1);i++)
 	{
 		arr[i]=atoi(argv[i+1]);
 		printf("%d ",arr[i]);
-		if(arr[i]<min)
-		{
-			min=arr[i];
-			pos=i;
-		}
 	}
-	int c=pos;
-	int j=1;
-	while(j<=arr[pos] && arr[c]%j==0)
+	for(int i=1;i<=arr[0];i++)
 	{
-		gcd=j;
-		j++;
+		for(int j=0;j<(args-1);j++)
+		{
+			if(arr[j]%i==0)
+			{
+				flag++;
+			}
+		}
+		if(flag==(args-1))
+		{
+			gcd=i;
+		}
+		flag=0;
 	}
 	printf("\nGCD is : %d",gcd);
 	return 0;
